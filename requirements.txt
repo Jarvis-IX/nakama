@@ -1,0 +1,26 @@
+# Core dependencies
+numpy>=1.26.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+psutil>=5.9.0
+
+# Vector database
+supabase>=2.3.4
+
+# Embeddings and ML
+torch>=2.0.1
+transformers>=4.36.0
+sentence-transformers>=2.2.2
+
+# Local LLM
+ollama>=0.1.7
+
+# Web framework
+fastapi>=0.104.1
+uvicorn>=0.24.0
+
+# Additional utilities
+tqdm>=4.66.1
+pydantic>=2.5.0
+python-multipart>=0.0.6
+pypdf>=4.0.0
