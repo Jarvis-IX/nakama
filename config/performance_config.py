@@ -19,6 +19,20 @@ logger = logging.getLogger(__name__)
 
 
 class PerformanceConfig:
+    @staticmethod
+    def get_ollama_options(streaming: bool = False) -> Dict[str, Any]:
+        """Returns a dictionary of options for the Ollama model based on performance settings."""
+        # Default options that can be customized based on performance needs
+        options = {
+            'num_ctx': 4096,      # Context window size
+            'temperature': 0.7,   # Model temperature
+            'top_k': 40,          # Top-K sampling
+            'top_p': 0.9,         # Top-P (nucleus) sampling
+        }
+        if streaming:
+            # Options specific to streaming can be adjusted here if needed
+            pass
+        return options
     """
     Provides dynamically calculated, hardware-aware performance settings.
     This is not user-configurable via .env; it adapts to the host system.

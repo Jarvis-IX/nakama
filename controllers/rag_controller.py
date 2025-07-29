@@ -142,7 +142,6 @@ class RAGController:
         except Exception as e:
             logger.error(f"Error streaming response: {e}", exc_info=True)
             yield f"I encountered an error: {str(e)}"
-            yield error_message
 
     def add_knowledge(self, content: str, metadata: Optional[Dict] = None) -> Tuple[bool, int]:
         """

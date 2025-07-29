@@ -12,6 +12,7 @@ from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 # --- Pre-emptive CPU Optimizations ---
 # This must be done BEFORE importing libraries like numpy or torch
@@ -101,6 +102,18 @@ app = FastAPI(
 )
 
 # Apply performance optimizations
+# Add CORS middleware to allow the frontend to communicate with the backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+    ],  # Frontend origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app = optimize_fastapi_app(app)
 
 # Dependency to get the RAG controller

@@ -50,8 +50,10 @@ When provided with context from the knowledge base, use it to inform your respon
                 logger.info(f"Initializing Ollama client for host: {self.host}")
                 self.client = ollama.Client(host=self.host)
                 # Check connection and model availability on first use
-                available_models = [m['name'] for m in self.client.list()['models']]
-                logger.info(f"Successfully connected to Ollama. Available models: {[m['name'] for m in self.client.list()['models']]}")
+                response = self.client.list()
+                models_list = response.get('models', [])
+                available_models = [m.get('name') for m in models_list if m.get('name')]
+                logger.info(f"Successfully connected to Ollama. Available models: {available_models}")
                 if self.model_name not in available_models:
                     logger.warning(f"Model '{self.model_name}' not found. Ollama may attempt to pull it.")
             except Exception as e:

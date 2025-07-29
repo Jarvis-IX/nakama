@@ -67,17 +67,17 @@ class EmbeddingService:
             raise RuntimeError("Embedding model not loaded")
         
         # Check cache first
-        cached_embedding = memory_optimizer.get_cached_embedding(text)
-        if cached_embedding is not None:
-            logger.debug("Retrieved embedding from cache")
-            return cached_embedding
+        # cached_embedding = memory_optimizer.get_cached_embedding(text)
+        # if cached_embedding is not None:
+        #     logger.debug("Retrieved embedding from cache")
+        #     return cached_embedding
         
         try:
             embedding = self.model.encode(text, convert_to_numpy=True, normalize_embeddings=True)
             embedding_list = embedding.tolist()
             
             # Cache the result
-            memory_optimizer.cache_embedding(text, embedding_list)
+            # memory_optimizer.cache_embedding(text, embedding_list)
             
             return embedding_list
         except Exception as e:
